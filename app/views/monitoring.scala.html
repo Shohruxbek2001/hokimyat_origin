@@ -1,0 +1,289 @@
+@import views.html.main
+@this(webJarsUtil: org.webjars.play.WebJarsUtil)
+@(logged: Boolean)
+@main("Welcome to Play", webJarsUtil) {
+    @*<div class="bg-image1"></div>*@
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+        <div class="container"><a href="#" class="navbar-brand"><strong>Monitoring</strong></a></div>
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a href="#" class="nav-link">Monitoring</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-toggle="modal" data-target="#myModal">foydalanuvchilar</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-toggle="modal" data-target="#mine">tadbir</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="modal" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                    <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Userlar bilan ishlash</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                    <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h6>Daraja:</h6>
+                        </div>
+                        <div class="col-md-12">
+                            <select class="custom-select" data-bind="options: vm.roleList(), optionsText: 'name',
+                optionsValue: 'name', value: vm.selectedRole, optionsCaption: 'Select role' ">
+                            </select>
+                        </div>
+                        <div class="col-md-12">
+                            <h6>Foydalanuvchi qoshish yoki o'zgartirish:</h6>
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <label for="usr">Name:</label>
+                            <input type="text" class="form-control" id="usr" data-bind="value: vm.login">
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <label for="pwd">Password:</label>
+                            <input type="password" class="form-control" id="pwd" data-bind="value: vm.password">
+                        </div>
+
+                    </div>
+                    <div class="col-md-12"></div>
+                </div>
+
+
+                <!-- Modal footer -->
+            <div class="modal-footer btn-group">
+                <button type="button" class="btn btn-success" data-dismiss="modal" data-bind="click: vm.add">qo'shish</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal" data-bind="click: vm.delete">o'chirish</button>
+            </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <div class="modal" id="mine">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                    <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Tadbilar bilan ishlash</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                    <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12 form-group">
+                            <label for="ht">Hududni tanlang:</label>
+                            <select class="custom-select" id="ht" data-bind="options: vm.hududList(), optionsText: 'name',
+                optionsValue: 'name', value: vm.selectedHudud, optionsCaption: 'Hududni tanlang' ">
+                            </select>
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <label for="sr">Sektor rahbari:</label>
+                            <select class="custom-select" id="sr" data-bind="options: vm.rahbarList(), optionsText: 'name',
+                optionsValue: 'name', value: vm.selectedRahbar, optionsCaption: 'rahbariyatni tanlang' "></select>
+                        </div>
+                        <div class="col-md-12">
+                            <h6>Tadbirni qo'shish yoki o'zgartirish:</h6>
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <label for="dt">Sana:</label>
+                            <input type="date" class="form-control" id="dt" data-bind="value: vm.date">
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <label for="m">Ma'lumot:</label>
+                            <input type="text" class="form-control" id="m" data-bind="value: vm.text">
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <label for="ht">Value:</label>
+                            <select class="custom-select" id="ht" data-bind="options: vm.valueList, optionsText: 'name',
+                optionsValue: 'name', value: vm.selectedValue, optionsCaption: 'Select Value' ">
+                            </select>
+                        </div>
+                        <div class="col-md-12"></div>
+                    </div>
+                </div>
+
+                    <!-- Modal footer -->
+                <div class="modal-footer btn-group">
+                    <button type="button" class="btn btn-success" data-dismiss="modal" data-bind="click: vm.adddata">qo'shish</button>
+                    <button type="button" class="btn btn-dark" data-dismiss="modal">o'zgartirish</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" data-bind="click: vm.deletedata">O'chirish</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" style="top: 50%; left: 50%; position: absolute; transform: translate(-50%,-50%)">
+        <div class="jumbotron shadow-lg p-3 mb-5 bg-white rounded" style="background-color: rgba(40, 45, 50, 0.6) !important;">
+            <div class="row">
+                <div class="col-md-12 form-group">
+                    <label for="hud" style="color: white">Hududni tanlang:</label>
+                    <select class="custom-select" id="hud"></select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 form-group">
+                    <label for="yil" style="color: white">Yilni tanlang:</label>
+                    <select class="custom-select" id="yil"></select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12" style="overflow-x: scroll; width: 100%; height: auto">
+                    <table border="1" class="table-bordered " width="100%" style="text-align: center; background-color: white; margin: 15px 0 15px 0">
+                        <tbody style="overflow-x: scroll">
+                            <tr>
+                                <th style="width: 20%" id="1">Sektor rahbarlari</th>
+                                <th colspan="2" style="width: 20%" id="2">Yanvar</th>
+                                <th colspan="2" style="width: 20%" id="3">Fevral</th>
+                                <th colspan="2" style="width: 20%" id="4">Mart</th>
+                                <th style="width: 20%"></th>
+                            </tr>
+                            <tr>
+                                <td id="5">Tuman hokimi</td>
+                                <td id="6">
+                                    <button value="yes" class="btn btn-success" onclick="suc(value)"></button>
+                                    <button value="no" class="btn btn-danger" onclick="suc(value)"></button>
+                                </td>
+                                <td id="7">
+                                    <button name="yes" class="btn btn-success"></button>
+                                    <button name="no" class="btn btn-danger"></button>
+                                </td>
+                                <td id="8">
+                                    <button name="yes" class="btn btn-success"></button>
+                                    <button name="no" class="btn btn-danger"></button>
+                                </td>
+                                <td id="9">
+                                    <button name="yes" class="btn btn-success"></button>
+                                    <button name="no" class="btn btn-danger"></button>
+                                </td>
+                                <td id="10">
+                                    <button name="yes" class="btn btn-success"></button>
+                                    <button name="no" class="btn btn-danger"></button>
+                                </td>
+                                <td id="11">
+                                    <button name="yes" class="btn btn-success"></button>
+                                    <button name="no" class="btn btn-danger"></button>
+                                </td>
+                                <td id="12"></td>
+                            </tr>
+                            <tr>
+                                <td id="13">Tuman prokurori</td>
+                                <td id="14">
+                                    <button name="yes" class="btn btn-success"></button>
+                                    <button name="no" class="btn btn-danger"></button>
+                                </td>
+                                <td id="15">
+                                    <button name="yes" class="btn btn-success"></button>
+                                    <button name="no" class="btn btn-danger"></button>
+                                </td>
+                                <td id="16">
+                                    <button name="yes" class="btn btn-success"></button>
+                                    <button name="no" class="btn btn-danger"></button>
+                                </td>
+                                <td id="17">
+                                    <button name="yes" class="btn btn-success"></button>
+                                    <button name="no" class="btn btn-danger"></button>
+                                </td>
+                                <td id="18">
+                                    <button name="yes" class="btn btn-success"></button>
+                                    <button name="no" class="btn btn-danger"></button>
+                                </td>
+                                <td id="19">
+                                    <button name="yes" class="btn btn-success"></button>
+                                    <button name="no" class="btn btn-danger"></button>
+                                </td>
+                                <td id="20"></td>
+                            </tr>
+                            <tr>
+                                <td id="21">Tuman IIB boshligi</td>
+                                <td id="22">
+                                    <button name="yes" class="btn btn-success"></button>
+                                    <button name="no" class="btn btn-danger"></button>
+                                </td>
+                                <td id="23">
+                                    <button name="yes" class="btn btn-success"></button>
+                                    <button name="no" class="btn btn-danger"></button>
+                                </td>
+                                <td id="24">
+                                    <button name="yes" class="btn btn-success"></button>
+                                    <button name="no" class="btn btn-danger"></button>
+                                </td>
+                                <td id="25">
+                                    <button name="yes" class="btn btn-success"></button>
+                                    <button name="no" class="btn btn-danger"></button>
+                                </td>
+                                <td id="26">
+                                    <button name="yes" class="btn btn-success"></button>
+                                    <button name="no" class="btn btn-danger"></button>
+                                </td>
+                                <td id="27">
+                                    <button name="yes" class="btn btn-success"></button>
+                                    <button name="no" class="btn btn-danger"></button>
+                                </td>
+                                <td id="28"></td>
+                            </tr>
+                            <tr>
+                                <td id="29">Tuman DSI boshligi</td>
+                                <td id="30">
+                                    <button name="yes" class="btn btn-success"></button>
+                                    <button name="no" class="btn btn-danger"></button>
+                                </td>
+                                <td id="31">
+                                    <button name="yes" class="btn btn-success"></button>
+                                    <button name="no" class="btn btn-danger"></button>
+                                </td>
+                                <td id="32">
+                                    <button name="yes" class="btn btn-success"></button>
+                                    <button name="no" class="btn btn-danger"></button>
+                                </td>
+                                <td id="33">
+                                    <button name="yes" class="btn btn-success"></button>
+                                    <button name="no" class="btn btn-danger"></button>
+                                </td>
+                                <td id="34">
+                                    <button name="yes" class="btn btn-success"></button>
+                                    <button name="no" class="btn btn-danger"></button>
+                                </td>
+                                <td id="35">
+                                    <button name="yes" class="btn btn-success"></button>
+                                    <button name="no" class="btn btn-danger"></button>
+                                </td>
+                                <td id="36"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    </div>
+    <footer id="main-footer" class="p-3 text-white text-center bg-dark fixed-bottom">
+        <div class="row">
+            <div class="col-md-3">
+                <p class="bolck-inline">Copyright &copy; 2020 Scalacoders</p>
+            </div>
+            <div class="col-md-6">
+                <i class="fas fa-chevron-circle-down fa-2x"></i>
+                <p>#</p>
+            </div>
+            <div class="col-md-3">
+            </div>
+        </div>
+    </footer>
+
+}

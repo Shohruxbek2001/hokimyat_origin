@@ -1,0 +1,35 @@
+@import views.html.main
+@this(webJarsUtil: org.webjars.play.WebJarsUtil)
+@(logged: Boolean)
+@main("Welcome to Play", webJarsUtil) {
+    <div class="bg-image"></div>
+    <form>
+
+        <div class="bg-text">
+            <div class="row">
+                <div class="col-md-6 offset-md-3 form-group" align="left">
+                    <label for="log">Login:</label>
+                    <input type="text" id="log" class="form-control" data-bind="value: vm.login" placeholder="Loginni kiriting...">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 offset-md-3 form-group" align="left">
+                    <label for="pass">Parol:</label>
+                    <input type="password" id="pass" class="form-control" data-bind="value: vm.password" placeholder="Parolni kiriting...">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 offset-md-3">
+                    <button class="btn btn-success" data-bind="click: vm.onSubmit" style="margin-top: 15px">
+                        Tizimga kirish</button>
+                </div>
+            </div>
+        </div>
+    </form>
+    @*
+     * Get an `Html` object by calling the built-in Play welcome
+     * template and passing a `String` message.
+     *@
+
+
+}
